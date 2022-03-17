@@ -9,14 +9,20 @@ so the following simulations can be used:
 * CLASSIC NEGATIVE
 
 ### Requirements
-Python 3.6 or higher
+-- Python 3.6 or higher
 
-Typer
+-- Exiftool
+
+-- Typer
 
 ### Installation
 ```bash
 pip3 install typer
 ```
+```bash
+git clone https://github.com/exiftool/exiftool.git
+```
+
 ### Virtual Environment
 ```bash
 pip3 install pipenv
