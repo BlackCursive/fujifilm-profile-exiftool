@@ -11,20 +11,17 @@ app = typer.Typer(add_completion=False)
 exiftool = "exiftool/exiftool"
 
 # Script will be applied to eith all JPG or RAF files
-jpg = "*.JPG *.jpg"
-raf = "*.RAF *.raf"
+jpg = "*.jpg *.JPG"
+raf = "*.raf *.RAF"
 
 @app.command()
 def main(filetype: str = typer.Option(..., prompt="Are these JPG or RAF files?")):
-  if filetype == 'JPG':
+  if filetype == 'jpg' or 'JPG':
     cmd = (f"{exiftool} -Make '-Model' '-FilmMode' '-Saturation' {jpg}")
-  elif filetype == 'RAF':
+  elif filetype == 'raf' or 'RAF':
     cmd = (f"{exiftool} -Make '-Model' '-FilmMode' '-Saturation' {raf}")
   else:
     cmd = (f"{exiftool} -Make '-Model' '-FilmMode' '-Saturation' {raf} {jpg}")
-
-  # REMOVE ON UPLOAD ###
-  print(cmd)
 
   p1 = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines = True)
 
