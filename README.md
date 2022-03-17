@@ -8,19 +8,20 @@ so the following simulations can be used:
 * BLEACH BYPASS
 * CLASSIC NEGATIVE
 
-## Installation
-Requirements - Python 3.6 or higher
+### Requirements
+Python 3.6 or higher
+
+Typer
+
+### Installation
 ```bash
 pip3 install typer
 ```
-
-ExifTool can be downloaded separately but it also contained as part of this script
+### Virtual Environment
 ```bash
-git clone https://github.com/exiftool/exiftool.git
-```
-or if you are on a Debian ( Ubuntu ) based system.
-```bash
-sudo apt install exiftool
+pip3 install pipenv
+pipenv shell
+pipenv install -r ./requirements.txt
 ```
 
 ## Usage
