@@ -1,0 +1,10 @@
+certifi==2021.10.8
+click==8.0.4
+distlib==0.3.4
+filelock==3.6.0
+pipenv==2022.1.8
+platformdirs==2.5.1
+six==1.16.0
+typer==0.4.0
+virtualenv==20.13.3
+virtualenv-clone==0.5.7
