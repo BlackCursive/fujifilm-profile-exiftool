@@ -1,6 +1,6 @@
-# Fujifilm Profile Exiftool
+# Fujifilm Model - Exiftool
 
-Python script that interacts with the command line interface (CLI) to change the camera model and/or film simulation on older Fujifilm cameras to an X-T4
+Python script that interacts with the command line interface (CLI) to change the camera model on Fujifilm cameras ( especially older models ) to an X-T4
 so the following simulations can be used:
 * ACROS
 * ETERNA
@@ -13,10 +13,16 @@ so the following simulations can be used:
 
 -- Exiftool
 
+-- Pandas
+
+-- Tabulate
+
 -- Typer
 
 ### Installation
 ```bash
+pip3 install pandas
+pip3 install tabulate
 pip3 install typer
 ```
 ```bash
