@@ -66,8 +66,8 @@ def main():
 
   # Function to process whichever data
   def post_film_mode(df_any_process):
+    df_any_process = df_any_process.merge(df_pre_process,on=['SourceFile', 'FilmMode', 'Saturation'], how='left')
     df_any_process.sort_values('SourceFile', inplace=True, ignore_index=True)
-    df_any_process.index = df_any_process.index + 1
     df_any_process['FilmMode'] = df_any_process['FilmMode'].replace(['F0/Standard (Provia)','F1b/Studio Portrait Smooth Skin Tone (Astia)', 'F2/Fujichrome (Velvia)' ],['Provia / Standard', 'Astia / Soft', 'Velvia / Vivid'])
     df_any_process.loc[df_any_process['Saturation']=='None (B&W)', 'FilmMode'] = 'B&W'
     df_any_process.loc[df_any_process['Saturation']=='B&W Red Filter', 'FilmMode'] = 'B&W Red Filter'
@@ -78,7 +78,7 @@ def main():
     df_any_process.loc[df_any_process['Saturation']=='Acros Red Filter', 'FilmMode'] = 'Acros Red Filter'
     df_any_process.loc[df_any_process['Saturation']=='Acros Yellow Filter', 'FilmMode'] = 'Acros Yellow Filter'
     df_any_process.loc[df_any_process['Saturation']=='Acros Green Filter', 'FilmMode'] = 'Acros Green Filter'
-    df_any_process = df_any_process.merge(df_pre_process,on=['SourceFile', 'FilmMode', 'Saturation'], how='left')
+    df_any_process.index = df_any_process.index + 1
     df_any_process.rename(columns = {'FilmMode':'Film Mode'}, inplace = True)
     df_any_process.drop('Saturation', axis=1, inplace=True)
     df_any_process.fillna('N/A', inplace=True)
