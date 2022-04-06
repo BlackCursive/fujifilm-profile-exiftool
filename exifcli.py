@@ -3,7 +3,6 @@ Change the Model Number in the EXIF Data to an X-T4
 '''
 import os
 import pandas as pd
-import re
 import time
 import typer
 import subprocess
@@ -28,6 +27,9 @@ else:
   raf_files.mkdir(parents=False, exist_ok=True)
   time.sleep( 1 )
 
+# String representation of home directory needed for Pandas str replacement - Would not use Path from pathlib
+raf_files_str_dir = (f"{home_dir}/raf_files/")
+
 # ExifTool Directory
 exiftool = home_dir / "exiftool/exiftool"
 
@@ -39,6 +41,13 @@ rafs = ["raf", "RAF"]
 
 #Argument file
 args = '-Model -FilmMode -Saturation'
+
+# Check for which operating system then issue appropriate clear command
+def clear_screen():
+  if(os.name == 'posix'):
+    os.system('clear')
+  else:
+    os.system('cls')
 
 @app.command()
 def main():
@@ -54,14 +63,13 @@ def main():
 
   # Checks if jpgs are in the raf_files directory
   if jpg_dir_ext_valid:
-    typer.secho(f"Please note there are files with either one of these extensions{jpg_file_ext}\nin the raf_files folder but they will not be affected.\n", fg=typer.colors.RED, bold=True)
+    typer.secho(f"Please note there are files with either one of these extensions{jpg_file_ext}\nin the raf_files folder but they will not be affected.\n", bold=True)
 
   # Checks if rafs are in the raf_files directory
   if not raf_dir_ext_valid:
     typer.secho(f"There aren't any Fujifilm RAW files in the 'raf_files' folder.\n", fg=typer.colors.RED, underline=True, bold=True)
     raise typer.Abort()
 
-  cmd_one = (f"{exiftool} {args} {raf} -csv")
   filetype = typer.prompt("If you would like to change the camera model of your Fujifilm RAW files to an XT-4 place\nthem in the raf_files folder then please type in the extenstion 'RAF' for confirmation")
   if filetype in rafs:
     cmd_one = (f"{exiftool} {args} {raf_files} {raf} -csv")
@@ -83,11 +91,12 @@ def main():
   ### print(tabulate(df_pre_process, headers=df_pre_process.columns, tablefmt="fancy_grid",  stralign=("center")))
 
   # Run 2nd Subprocess - convert model
-  cmd_two = (f"{exiftool} -model=X-T4 {raf} -csv")
+  cmd_two = (f"{exiftool} -model=X-T4 {raf} {raf_files} -csv")
   mid_process = subprocess.Popen(cmd_two, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, cwd=home_dir)
 
-  #Sleep for 2 seconds
+  #Sleep for 2 seconds then clear the screen
   time.sleep( 2 )
+  clear_screen()
 
   # Run 1st Subprocess again
   post_process = subprocess.Popen(cmd_one, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, cwd=home_dir)
@@ -97,6 +106,10 @@ def main():
 
   # Function to process whichever data
   def post_film_mode(df_any_process):
+    # Aborts program if there isn't any simulation metadata - possibly a file other than a Fujifilm raf but with the extension
+    if 'FilmMode' not in df_any_process.columns:
+      typer.secho("The files in the raf_files directory do not contain any Fujifilm Film Simulation metadata.\nPlease double check your files and rerun the program.", fg=typer.colors.RED, underline=True, bold=True)
+      raise typer.Abort()
     df_any_process = df_any_process.merge(df_pre_process,on=['SourceFile', 'FilmMode', 'Saturation'], how='left')
     df_any_process.sort_values('SourceFile', inplace=True, ignore_index=True)
     df_any_process['FilmMode'] = df_any_process['FilmMode'].replace(['F0/Standard (Provia)','F1b/Studio Portrait Smooth Skin Tone (Astia)', 'F2/Fujichrome (Velvia)' ],['Provia / Standard', 'Astia / Soft', 'Velvia / Vivid'])
@@ -113,9 +126,8 @@ def main():
     df_any_process.rename(columns = {'FilmMode':'Film Mode'}, inplace = True)
     df_any_process.drop('Saturation', axis=1, inplace=True)
     df_any_process.fillna('N/A', inplace=True)
+    df_any_process['SourceFile'] = df_any_process['SourceFile'].str.replace(raf_files_str_dir, "") ########
     df_any_process = df_any_process[['SourceFile', 'Film Mode', 'Model (Before)', 'Model']]
-    # print(Path(raf_files).parent)
-    # print(Path(raf_files).name)
     print(tabulate(df_any_process, headers=df_any_process.columns, tablefmt="fancy_grid", stralign=("center")))
   post_film_mode(df_post_process)
 
@@ -125,7 +137,7 @@ def main():
   # Standard ouput & suffix on process files
   if not stdout_mid_process:
     typer.secho(f'\n{stderr_mid_process}', fg=typer.colors.BLACK, bold=True)
-    typer.secho(f"Backups are made with the suffix '_original' added to the filename. \n", fg=typer.colors.BLACK, bold=True)
+    typer.secho(f"Backups are made of processed files with the suffix '_original' added to the filename. \n", fg=typer.colors.BLACK, bold=True)
 
   # Close standard output
   pre_process.stdout.close()
