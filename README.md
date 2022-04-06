@@ -19,26 +19,49 @@ so the following simulations can be used:
 
 -- Typer
 
-### Installation
+-------------
+### Installation 
+#### Clone repository
+```bash
+git clone https://github.com/exiftool/exiftool.git
+cd exiftool
+```
+
+### Virtual Environment - Install Pipenv using Homebrew or Python
+#### macOS
+```bash
+brew install pipenv
+```
+or
+#### Python
+```bash
+pip3 install pipenv
+```
+
+### Activate Pipenv Shell
+```bash
+pipenv shell
+```
+
+### Install requirements
+```bash
+pipenv install -r ./requirements.txt
+```
+or
 ```bash
 pip3 install pandas
 pip3 install tabulate
 pip3 install typer
 ```
-```bash
-git clone https://github.com/exiftool/exiftool.git
-```
 
-### Virtual Environment
-```bash
-pip3 install pipenv
-pipenv shell
-pipenv install -r ./requirements.txt
-```
-
-## Usage
+### Usage - Be sure to place Fujifilm *.raf files in the raf_files directory or the program will abort
 ```bash
 python3 exifcli.py
 ```
 
 ## Sample Output
+
+### Exit Pipenv Shell
+```bash
+exit
+```
