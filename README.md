@@ -21,6 +21,11 @@ so the following simulations can be used:
 
 -------------
 ### Installation 
+#### Check your version of Python and upgrade if necessary
+```bash
+python --version
+```
+
 #### Clone repository
 ```bash
 git clone https://github.com/exiftool/exiftool.git
