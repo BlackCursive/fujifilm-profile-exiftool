@@ -1,3 +1,5 @@
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 # Fujifilm Model - Exiftool
 
 Python script that interacts with the command line interface (CLI) to change the camera model on Fujifilm cameras ( especially older models ) to an X-T4
