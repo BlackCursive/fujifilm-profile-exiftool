@@ -64,9 +64,11 @@ pip3 install typer
 python3 exifcli.py
 ```
 
-## Sample Output
-
 ### Exit Pipenv Shell
 ```bash
 exit
 ```
+
+---------
+## Sample Output
+![ExifCli](https://github.com/BlackCursive/fujifilm-profile-exiftool/blob/main/exifcli.gif)
