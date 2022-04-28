@@ -25,13 +25,13 @@ so the following simulations can be used:
 ### Installation 
 #### Check your version of Python and upgrade if necessary
 ```bash
-python --version
+python3 --version
 ```
 
 #### Clone repository
 ```bash
-git clone https://github.com/exiftool/exiftool.git
-cd exiftool
+git clone https://github.com/BlackCursive/fujifilm-profile-exiftool.git
+cd fujifilm-profile-exiftool
 ```
 
 ### Virtual Environment - Install Pipenv using Homebrew or Python
