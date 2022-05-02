@@ -70,7 +70,7 @@ def main():
     typer.secho(f"There aren't any Fujifilm RAW files in the 'raf_files' folder.\n", fg=typer.colors.RED, underline=True, bold=True)
     raise typer.Abort()
 
-  filetype = typer.prompt("If you would like to change the camera model of your Fujifilm RAW files to an XT-4 place\nthem in the raf_files folder then please type in the extenstion 'RAF' for confirmation")
+  filetype = typer.prompt("\nIf you would like to change the camera model of your Fujifilm RAW files to an XT-4 place\nthem in the raf_files folder then please type in the extenstion 'RAF' for confirmation")
   if filetype in rafs:
     cmd_one = (f"{exiftool} {args} {raf_files} {raf} -csv")
   else:
@@ -95,7 +95,7 @@ def main():
   mid_process = subprocess.Popen(cmd_two, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, cwd=home_dir)
 
   #Sleep for 2 seconds then clear the screen
-  time.sleep( 2 )
+  time.sleep( 1 )
   clear_screen()
 
   # Run 1st Subprocess again
@@ -128,6 +128,13 @@ def main():
     df_any_process.fillna('N/A', inplace=True)
     df_any_process['SourceFile'] = df_any_process['SourceFile'].str.replace(raf_files_str_dir, "") ########
     df_any_process = df_any_process[['SourceFile', 'Film Mode', 'Model (Before)', 'Model']]
+    total = df_post_process.shape[0]
+    with typer.progressbar(length=total, label="Processing Photos\t") as progress:
+        for value in progress:
+            # Fake processing time
+            time.sleep(0.1)
+            total += 1
+    print("\n")
     print(tabulate(df_any_process, headers=df_any_process.columns, tablefmt="fancy_grid", stralign=("center")))
   post_film_mode(df_post_process)
 
