@@ -80,4 +80,4 @@ exit
 This project is built with ![Exiftool](https://github.com/exiftool) by Phil Harvey.
 - ExifTool is a platform-independent Perl library plus a command-line application for reading, writing and editing meta information in a wide variety of files.
 -----
-Photos are provided by courtesy of ![Ardis Pictures](http://www.ardispictures.com) and ![Kristoffer Trolle](https://www.kristoffertrolle.com).
+Sample photos can be downloaded are provided by courtesy ![Kristoffer Trolle](https://www.kristoffertrolle.com/2020/fujifilm-sample-raw-files).
