@@ -2,13 +2,14 @@
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 # Fujifilm Model - Exiftool
 
-Python script that interacts with the command line interface (CLI) to change the camera model on Fujifilm cameras ( especially older models ) to an X-T4
-so the following simulations can be used:
-* ACROS
-* ETERNA
-* SEPIA
-* BLEACH BYPASS
-* CLASSIC NEGATIVE
+Python script that interacts with the command line interface (CLI) to change the camera model on Fujifilm cameras ( especially older models ) to an X-T4 so the following simulations can be used:
+* Eterna
+* Eterna Bleach Bypass
+* Classic Negative
+* Acros
+* Acros + ( Red / Yellow / Green - Filter )
+
+For example if you have a Fujifilm X100, X-E1, X-E2 or an X70 but want to use Classic Chrome or Eterna Bleach Bypass, you now can.
 
 ### Requirements
 -- Python 3.6 or higher
@@ -74,3 +75,10 @@ exit
 ---------
 ## Sample Output
 ![ExifCli](https://github.com/BlackCursive/fujifilm-profile-exiftool/blob/main/exifcli.gif)
+
+
+-----
+This project is built with ![Exiftool](https://github.com/exiftool) by Phil Harvey.
+- ExifTool is a platform-independent Perl library plus a command-line application for reading, writing and editing meta information in a wide variety of files.
+-----
+Sample photos can be downloaded are provided by courtesy ![Kristoffer Trolle](https://www.kristoffertrolle.com/2020/fujifilm-sample-raw-files).
