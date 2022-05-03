@@ -76,6 +76,8 @@ exit
 ![ExifCli](https://github.com/BlackCursive/fujifilm-profile-exiftool/blob/main/exifcli.gif)
 
 
-------------------------
+-----
 This project is built with ![Exiftool](https://github.com/exiftool) by Phil Harvey.
 - ExifTool is a platform-independent Perl library plus a command-line application for reading, writing and editing meta information in a wide variety of files.
+-----
+Photos are provided by courtesy of ![Ardis Pictures](http://www.ardispictures.com) and ![Kristoffer Trolle](https://www.kristoffertrolle.com).
