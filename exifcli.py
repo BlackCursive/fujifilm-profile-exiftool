@@ -95,7 +95,7 @@ def main():
   mid_process = subprocess.Popen(cmd_two, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, cwd=home_dir)
 
   #Sleep for 2 seconds then clear the screen
-  time.sleep( 1 )
+  time.sleep( 2 )
   clear_screen()
 
   # Run 1st Subprocess again
