@@ -72,6 +72,12 @@ python3 exifcli.py
 exit
 ```
 
+### If you run into a permission denied error.
+```bash
+cd exiftool
+sudo chmod 755 exiftool
+cd ..
+```
 ---------
 ## Sample Output
 ![ExifCli](https://github.com/BlackCursive/fujifilm-profile-exiftool/blob/main/exifcli.gif)
