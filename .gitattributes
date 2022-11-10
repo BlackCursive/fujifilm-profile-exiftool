@@ -17,3 +17,5 @@
 *.pyc    binary export-ignore
 *.pyo    binary export-ignore
 *.pyd    binary
+
+*.perl linguist-detectable=false
